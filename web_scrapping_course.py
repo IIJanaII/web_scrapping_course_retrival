@@ -7,10 +7,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 # Suppress the deprecation message
-st.set_option('deprecation.showfileUploaderEncoding', False)
+#st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Load Course dataset
+<<<<<<< HEAD
 df_course=pd.read_csv('C:/Users/jega_/web_scrapping_course_retrival/dataframecourseV11.csv')
+=======
+
 filtered_documents=df_course.copy()
 
 
