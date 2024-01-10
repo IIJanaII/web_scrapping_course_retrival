@@ -10,9 +10,9 @@ from sklearn.metrics.pairwise import linear_kernel
 #st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Load Course dataset
-<<<<<<< HEAD
-df_course=pd.read_csv('C:/Users/jega_/web_scrapping_course_retrival/dataframecourseV11.csv')
-=======
+
+df_course=pd.read_csv('dataframecourseV11.csv')
+
 
 filtered_documents=df_course.copy()
 
