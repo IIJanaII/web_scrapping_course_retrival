@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import linear_kernel
 
 # Load Course dataset
 
-df_course=pd.read_csv('dataframecourseV11.csv')
+df_course=pd.read_csv('dataframecourse_final2.csv')
 
 
 filtered_documents=df_course.copy()
