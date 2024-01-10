@@ -10,9 +10,9 @@ from sklearn.metrics.pairwise import linear_kernel
 #st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Load Course dataset
-<<<<<<< HEAD
-df_course=pd.read_csv('C:/Users/jega_/web_scrapping_course_retrival/dataframecourseV11.csv')
-=======
+
+df_course=pd.read_csv('C:/Users/jega_/web_scrapping_course_retrival/dataframecourse_final2.csv')
+
 
 filtered_documents=df_course.copy()
 
@@ -52,6 +52,9 @@ st.title("📚 What would you like to learn today ? 📚")
 with st.sidebar:
     st.header("🎛️ Filters")
 
+    # Dropdown for 'type' column
+    selected_types = st.multiselect("📚 Select Course Types", df_course['type'].unique())
+
     # Dropdown for 'level' column
     selected_level = st.selectbox("📶 Select Level", df_course['level'].unique(),index=None)
 
@@ -77,8 +80,10 @@ with st.sidebar:
 # Filter the DataFrame based on selected duration
 #filtered_documents = filtered_documents[(filtered_documents['Duration'] >= min_duration) & (filtered_documents['Duration'] <= max_duration)]
 
-def filter_data(data, level, formateurs, min_price, max_price):
+def filter_data(data,selected_types, level, formateurs, min_price, max_price):
     filtered_data = data.copy()
+    if selected_types:
+        filtered_data = filtered_data[filtered_data['type'].isin(selected_types)]
     if len(formateurs)>0:
         filtered_data = filtered_data[filtered_data['provider'].isin(formateurs)]
     if level is not None:
@@ -106,7 +111,7 @@ if st.button("🔍 Retrieve your course"):
         print("level",selected_level)
         print("formateur",selected_formateurs)
 
-        top_k_documents=filter_data(top_k_documents,selected_level,selected_formateurs,min_price,max_price)
+        top_k_documents=filter_data(top_k_documents,selected_types,selected_level,selected_formateurs,min_price,max_price)
         
         st.session_state.top_documents=top_k_documents
         #top_documents=top_k_documents
@@ -129,19 +134,21 @@ if st.button("🔍 Retrieve your course"):
 
             with container_image_title[1]:
                 st.title(document.title)
-                st.write(f"Duration: {document.duration_hour}")
+                st.write(f"Type: {document.type}")
+                st.write(f"Duration: {document.duration}")
             
             with st.expander(f"Course {i}: {document.title}"):
                 st.write(f"**🎯 Title:** {document.title}")
+                st.write(f"**📚 Type:** {document.type}")
                 st.write(f"**📶 Level:** {document.level}")
-                st.write(f"**⌛ Duration:** {document.duration_hour}")
+                st.write(f"**⌛ Duration:** {document.duration}")
 
 
 
                 # Display the image using the image source
                 #st.image(document.image_source, caption='Course Image', use_column_width=True)
                 st.write(f"**🌱 Carbon cost:** {document.cost_per_co}")
-                st.write(f"**💵 Price:** {document.new_price_column}")
+                st.write(f"**💵 Price:** {document.price}")
                 st.write(f"**Link:** {document.link}")
                 st.write(f"**Formateur:** {document.provider}")
                 st.write(f"**Certification:** {document.certificate}")
@@ -178,18 +185,20 @@ if st.session_state.page_index < 50:
 
             with container_image_title[1]:
                 st.title(document.title)
-                st.write(f"Duration: {document.duration_hour}")
+                st.write(f"Type: {document.type}")
+                st.write(f"Duration: {document.duration}")
             
             with st.expander(f"Course {i}: {document.title}"):
                 st.write(f"**🎯 Title:** {document.title}")
+                st.write(f"**📚 Type:** {document.type}")
                 st.write(f"**📶 Level:** {document.level}")
-                st.write(f"**⌛ Duration:** {document.duration_hour}")
+                st.write(f"**⌛ Duration:** {document.duration}")
 
                 # Display the image using the image source
                 #st.image(document.image_source, caption='Course Image', use_column_width=True)
                 
                 st.write(f"**🌱 Carbon cost:** {document.cost_per_co}")
-                st.write(f"**💵 Price:** {document.new_price_column}")
+                st.write(f"**💵 Price:** {document.price}")
 
                 st.write(f"**Link:** {document.link}")
                 st.write(f"**Formateur:** {document.provider}")
@@ -220,17 +229,19 @@ if st.session_state.page_index>0:
 
             with container_image_title[1]:
                 st.title(document.title)
-                st.write(f"Duration: {document.duration_hour}")
+                st.write(f"Type: {document.type}")
+                st.write(f"Duration: {document.duration}")
             
             with st.expander(f"Course {i}: {document.title}"):
                 st.write(f"**🎯 Title:** {document.title}")
+                st.write(f"**📚 Type:** {document.type}")
                 st.write(f"**📶 Level:** {document.level}")
-                st.write(f"**⌛ Duration:** {document.duration_hour}")
+                st.write(f"**⌛ Duration:** {document.duration}")
 
                 # Display the image using the image source
                 #st.image(document.image_source, caption='Course Image', use_column_width=True)
                 st.write(f"**🌱 Carbon cost:** {document.cost_per_co}")
-                st.write(f"**💵 Price:** {document.new_price_column}")
+                st.write(f"**💵 Price:** {document.price}")
                 st.write(f"**Link:** {document.link}")
                 st.write(f"**Formateur:** {document.provider}")
                 st.write(f"**Certification:** {document.certificate}")
