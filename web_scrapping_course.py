@@ -240,7 +240,7 @@ if st.session_state.page_index>0:
 
                 # Display the image using the image source
                 #st.image(document.image_source, caption='Course Image', use_column_width=True)
-                st.write(f"**🌱 Carbon cost:** {document.cost_per_co}")
+                st.write(f"**🌱 Carbon cost per connexion:** {document.cost_per_co}")
                 st.write(f"**💵 Price:** {document.price}")
                 st.write(f"**Link:** {document.link}")
                 st.write(f"**Formateur:** {document.provider}")
