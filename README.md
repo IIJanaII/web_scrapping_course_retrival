@@ -16,6 +16,7 @@ Aujourd'hui, l'accès à l'information et à l'éducation a connu une transforma
   - Scraping des sites internet (My Mooc, Pluralsight, Centralclass, Futurelearn).
   - Scraping du site Green Pixe pour obtenir la note carbone.
   - Post-processing pour convertir et formater les données.
+  - Dataviz
 
 ## **Instructions d'Utilisation**
 1. Clonez le repository localement.
